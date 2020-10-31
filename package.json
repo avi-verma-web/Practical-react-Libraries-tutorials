@@ -3,19 +3,35 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/core": "^10.0.35",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@tippy.js/react": "^3.1.1",
+    "chart.js": "^2.9.4",
+    "mdx-deck": "^4.1.1",
     "react": "^17.0.1",
+    "react-chartjs-2": "^2.10.0",
+    "react-color": "^2.19.3",
+    "react-countup": "^4.3.3",
+    "react-credit-cards": "^0.8.3",
+    "react-datepicker": "^3.3.0",
     "react-dom": "^17.0.1",
+    "react-icons": "^3.11.0",
+    "react-idle-timer": "^4.5.0",
+    "react-modal": "^3.11.2",
+    "react-player": "^2.6.2",
     "react-scripts": "4.0.0",
+    "react-spinners": "^0.9.0",
+    "react-toastify": "^6.0.9",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start-deck": "mdx-deck src/components/Deck/deck.mdx"
   },
   "eslintConfig": {
     "extends": [

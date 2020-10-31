@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+
+
+//Components Demo
+// import ReactIconsDemo from "./components/ReactIconsDemo";
+// import ReactToastifyDemo from "./components/ReactToastifyDemo";
+// import ReactModalDemo from "./components/ReactModalDemo";
+// import ReactToolTipDemo from "./components/ReactToolTipDemo";
+// import ReactCountUpDemo from "./components/ReactCountUpDemo";
+// import ReactIdleTimerDemo from "./components/ReactIdleTimerDemo";
+// import ReactColorDemo from "./components/ReactColorDemo";
+// import ReactCreditCardDemo from "./components/ReactCreditCardDemo";
+// import ReactDatePickerDemo from "./components/ReactDatePickerDemo";
+// import ReactPlayerDemo from "./components/ReactPlayerDemo";
+// import ReactSpinnerDemo from "./components/ReactSpinnerDemo";
+import ReactChartDemo from "./components/ReactChartDemo";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ReactChartDemo></ReactChartDemo>
     </div>
   );
 }

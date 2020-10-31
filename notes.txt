@@ -1,0 +1,392 @@
+PRACTICAL REACT
+
+1 ICONS
+
+npm i react-icons
+
+import { FaReact } from "react-icons/fa"
+import { MdAlarm } from "react-icons/md";
+<FaReact color="purple" size="10rem"></FaReact>
+<MdAlarm color="purple" size="10rem"></MdAlarm>
+
+-------------------------------------
+To use uniform styling for all icons
+
+import { IconContext } from "react-icons";
+import { FaReact } from "react-icons/fa"
+import { MdAlarm } from "react-icons/md";
+
+<IconContext.Provider value={{ color: "blue", size: "5rem" }}>
+<FaReact></FaReact>
+<MdAlarm></MdAlarm>
+</IconContext.Provider>
+
+//////////////////////////////////////////////////////////////
+
+2 TOAST NOTIFICATIONS
+
+npm i react-toastify
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+toast.configure();
+const ReactToastifyDemo = () => {
+  const notify = () => {
+    toast("Basic Notification");
+    //POSITION
+    toast("Basic Notification", { position: toast.POSITION.TOP_LEFT });
+    toast("Basic Notification", { position: toast.POSITION.TOP_CENTER,autoClose: 8000 });
+    toast("Basic Notification", { position: toast.POSITION.TOP_RIGHT,autoClose: false });
+    toast("Basic Notification", { position: toast.POSITION.BOTTOM_LEFT });
+    toast("Basic Notification", { position: toast.POSITION.BOTTOM_CENTER });
+    toast("Basic Notification", { position: toast.POSITION.BOTTOM_RIGHT });
+
+    //COLOR
+    toast.success("Basic Notification", {position: toast.POSITION.TOP_CENTER});
+    toast.info("Basic Notification", { position: toast.POSITION.TOP_RIGHT });
+    toast.warn("Basic Notification", { position: toast.POSITION.BOTTOM_LEFT });
+    toast.error("Basic Notification", {position: toast.POSITION.BOTTOM_CENTER});
+  };
+  return (
+    <div>
+      <button onClick={notify}>Notify</button>
+    </div>
+  );
+};
+
+---------------------------------------------------------
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+//custom Toast
+const CustomToast = ({ closeToast }) => {
+  return (
+    <div>
+      This is custom toast
+      <button onClick={closeToast}>Close</button>
+    </div>
+  );
+};
+
+toast.configure();
+const ReactToastifyDemo = () => {
+  const notify = () => {
+   toast.warn(<CustomToast></CustomToast>, {
+      position: toast.POSITION.BOTTOM_LEFT,
+    });
+  };
+  return (
+    <div>
+      <button onClick={notify}>Notify</button>
+    </div>
+  );
+};
+
+//////////////////////////////////////////////////////////////
+
+3 MODAL
+
+npm i react-modal
+
+import Modal from "react-modal";
+
+const ReactModalDemo = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  return (
+    <div>
+      <button onClick={() => setModalIsOpen(true)}>Open Modal</button>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        style={{
+          overlay: { backgroundColor: "grey" },
+          content: { color: "orange",backgroundColor: "green" },
+        }}
+      >
+        <h2>Modal Title</h2>
+        <p>Modal Body</p>
+        <button onClick={() => setModalIsOpen(false)}>Close Modal</button>
+      </Modal>
+    </div>
+  );
+};
+
+------------------------------------------------
+NOTE
+onRequestClose----->Close the modal on-> 1 on click on outside modal
+                                         2 on press of ESC
+
+shouldCloseOnOverlayClick={false}->prevents modal to close on click on outside modal
+
+NOTE
+in style we define style for overlay and content
+
+
+//////////////////////////////////////////////////////////////////////////////////
+
+4 REACT TOOL TIP
+
+npm i '@tippy.js/react'
+
+import Tippy from "@tippy.js/react";
+import "tippy.js/dist/tippy.css";
+
+
+<div style={{ paddingBottom: "20px" }}>
+    <Tippy
+        content="Basic Tooltip"
+        arrow={false}
+        delay={1000}
+        placement={"right"}
+    >
+        <button>Hover</button>
+    </Tippy>
+</div>
+
+//////////////////////////////////////////////////////////////////////////////////
+
+5 REACT COUNTUP
+
+npm i react-countup
+
+import CountUp,{ useCountUp } from "react-countup";
+
+//Default duration is 2 seconds
+//Default initial value is 0
+
+const { countUp, start, pauseResume, reset, update } = useCountUp({
+    duration: 5,
+    end: 10000,
+    startOnMount: false,
+  });
+  return (
+    <h1>
+      <CountUp end={200}></CountUp>
+      <br></br>
+      <CountUp end={200} duration={5}></CountUp>
+      <br></br>
+      <CountUp start={500} end={1000} duration={5}></CountUp>
+      <br></br>
+      <CountUp
+        prefix="$"
+        decimals={2}
+        start={0}
+        end={1000}
+        duration={5}
+      ></CountUp>
+      <br></br>
+      <CountUp
+        suffix="USD"
+        decimals={2}
+        start={0}
+        end={1000}
+        duration={5}
+      ></CountUp>
+      <div>
+        <h1>{countUp}</h1>
+        <button onClick={start}>Start</button>
+        <button onClick={reset}>Reset</button>
+        <button onClick={pauseResume}>Pause/Resume</button>
+        <button onClick={() => update(2000)}>Update to 2000</button>
+      </div>
+    </h1>
+  );
+
+
+//////////////////////////////////////////////////////////////////////////////////
+
+6 IDLE TIMER
+
+NOTE-> after idle time it informs user
+EXAMPLE->Like session time out of banking website
+
+npm i react-idle-timer
+
+import React, { useRef, useState } from "react";
+import IdleTimer from "react-idle-timer";
+
+const IdleTimerRef = useRef(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const onIdle = () => {
+    alert("User is Idle");
+    setIsLoggedIn(false);
+  };
+  return (
+    <div>
+      {isLoggedIn ? <h2>Hello Avi</h2> : <h2>Hello Guest</h2>}
+      <IdleTimer ref={IdleTimerRef} timeout={5000} onIdle={onIdle}></IdleTimer>
+    </div>
+
+//////////////////////////////////////////////////////////////////////////////////
+
+7 COLOR PICKER
+
+npm i react-color
+
+import { ChromePicker } from "react-color";
+
+const ReactColorDemo = () => {
+  const [color, setColor] = useState("#fff");
+  const [showColorPicker, setShowColorPicker] = useState(false);
+  return (
+    <div>
+      <button
+        onClick={() =>
+          setShowColorPicker((showColorPicker) => !showColorPicker)
+        }
+      >
+        {showColorPicker ? "Close Color Picker" : "Pick A Color"}
+      </button>
+      {showColorPicker && (
+        <ChromePicker
+          color={color}
+          onChange={(updatedColor) => setColor(updatedColor.hex)}
+        ></ChromePicker>
+      )}
+      <h2>You Picked {color}</h2>
+    </div>
+  );
+};
+
+export default ReactColorDemo;
+
+//////////////////////////////////////////////////////////////////////////////////
+
+8 CREDIT CARDS
+
+npm i react-credit-cards
+
+import Cards from "react-credit-cards";
+import "react-credit-cards/es/styles-compiled.css";
+
+const ReactCreditCardDemo = () => {
+  const [number, setNumber] = useState("");
+  const [name, setName] = useState("");
+  const [expiry, setExpiry] = useState("");
+  const [cvc, setCvc] = useState("");
+  const [focus, setFocus] = useState("");
+  return (
+    <form>
+      <Cards
+        number={number}
+        name={name}
+        expiry={expiry}
+        cvc={cvc}
+        focused={focus}
+      ></Cards>
+      <input
+        type="tel"
+        name="number"
+        placeholder="Card Number"
+        value={number}
+        onChange={(e) => setNumber(e.target.value)}
+        onFocus={(e) => setFocus(e.target.name)}
+      ></input>
+      <input
+        type="text"
+        name="name"
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        onFocus={(e) => setFocus(e.target.name)}
+      ></input>
+      <input
+        type="text"
+        name="expiry"
+        placeholder="MM/YY Expiry"
+        value={expiry}
+        onChange={(e) => setExpiry(e.target.value)}
+        onFocus={(e) => setFocus(e.target.name)}
+      ></input>
+      <input
+        type="tel"
+        name="cvc"
+        placeholder="CVC"
+        value={cvc}
+        onChange={(e) => setCvc(e.target.value)}
+        onFocus={(e) => setFocus(e.target.name)}
+      ></input>
+    </form>
+  );
+};
+
+//////////////////////////////////////////////////////////////////////////////////
+
+9 DATE PICKER
+
+npm i react-datepicker
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+<DatePicker
+      selected={selectedDate}
+      onChange={(date) => setSelectedDate(date)}
+      dateFormat="dd/MM/yyyy"
+      //   minDate={new Date()}
+      //   maxDate={new Date()}
+      filterDate={(date) => date.getDay() !== 6 && date.getDay() !== 0}
+      isClearable={true}
+      showYearDropdown={true}
+      scrollableMonthYearDropdown={true}
+></DatePicker>
+
+//////////////////////////////////////////////////////////////////////////////////
+
+10 PRESENTATION DECK
+
+npm i mdx-deck
+
+//////////////////////////////////////////////////////////////////////////////////
+
+11 REACT PLAYER
+
+npm i react-PLAYER
+
+import ReactPlayer from "react-player";
+
+<ReactPlayer
+        width="480px"
+        height="240px"
+        controls={true}
+        url="https://www.youtube.com/watch?v=FJiE6X4xF6I"
+        onReady={() => alert("On ready")}
+        onStart={() => alert("On start")}
+        onPause={() => alert("On pasue")}
+        onEnded={() => alert("On ended")}
+        onError={() => alert("On error")}
+></ReactPlayer>
+
+//////////////////////////////////////////////////////////////////////////////////
+
+12 LOADING INDICATORS
+
+npm i react-spinners
+
+TO ADD CSS TO SPINNERS
+npm i @emotion/core
+
+import { css } from "@emotion/core";
+import { BounceLoader, BarLoader, BeatLoader } from "react-spinners";
+
+const loaderCSS = css`
+  margin-top: 25px;
+  margin-bottom: 25px;
+`;
+
+<BounceLoader
+    css={loaderCSS}
+    size={24}
+    color="red"
+    loading={true}
+></BounceLoader>
+
+//////////////////////////////////////////////////////////////////////////////////
+
+13 REACT CHARTS
+
+TO display data in charts format
+
+npm i react-chartjs-2 chart.js
